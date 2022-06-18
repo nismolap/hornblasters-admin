@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hornblastersadmin/UI/buttons.dart';
+import 'package:hornblastersadmin/UI/dashboard/dashboard.dart';
+import 'package:hornblastersadmin/UI/signin/signin.dart';
 
 import 'UI/splashscreen/splashscreen.dart';
 
@@ -18,10 +21,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       getPages: [
         GetPage(name: '/SplashScreen', page: () => const SplashScreen()),
+        GetPage(name: '/SignIn', page: () => SignIn()),
+        GetPage(name: '/Dashboard', page: () => Dashboard()),
       ],
       debugShowCheckedModeBanner: false,
       title: 'HornBlasters',
-      home: const SplashScreen(),
+      home:  Buttons(),
     );
   }
 }

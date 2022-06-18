@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "243674717073",
+    "project_id": "hornblasters-fe4c4",
+    "storage_bucket": "hornblasters-fe4c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243674717073:android:6e1c118c7d87181da4d830",
+        "android_client_info": {
+          "package_name": "com.hornblasters.hornblasters"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243674717073-omt1j4mumomcoo9vrhnuflg35qvd3kp5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hornblasters.hornblasters",
+            "certificate_hash": "5e62564f5fcb62b543326e7bdfed4d4f434693cf"
+          }
+        },
+        {
+          "client_id": "243674717073-qsilus1g1ofmpl8q8ngortts1eg1ncuo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3MzJBZHLJtTqD7TyW9ZaLg4bDI6dA_Go"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243674717073-qsilus1g1ofmpl8q8ngortts1eg1ncuo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
