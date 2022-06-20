@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hornblastersadmin/UI/constants.dart';
@@ -12,9 +14,8 @@ class FloatingActionButtonD extends StatelessWidget {
       width: 80.0,
       height: 80.0,
       child: FloatingActionButton(
-
         onPressed: () {
-          add.pagetype.value = 'add' ;
+          add.pagetype.value = 'add';
           Get.toNamed('AddEdit');
           add.title.value = '';
           add.url.value = '';
@@ -22,14 +23,13 @@ class FloatingActionButtonD extends StatelessWidget {
           add.type.value = '';
           add.iname.value = '';
           add.selected = null;
-
-
-
-
-
         },
         backgroundColor: P5,
-        child: Icon(Icons.add,color: P2,size: 50,),
+        child: Icon(
+          Icons.add,
+          color: P2,
+          size: 50,
+        ),
       ),
     );
   }

@@ -4,13 +4,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hornblastersadmin/UI/constants.dart';
-import 'package:hornblastersadmin/UX/dashboard-controller.dart';
 import 'package:hornblastersadmin/UX/signin-controller.dart';
 
 SignInController controller = Get.put(SignInController());
 
 class SplashScreen extends StatefulWidget {
-
   SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -21,9 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(
-        Duration(seconds: 2),
-            () => controller.isregistered());
+    Timer(Duration(seconds: 2), () => controller.isregistered());
   }
 
   @override
@@ -44,22 +40,27 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text('HB',style: TextStyle(
-                      fontFamily: 'GaleanaCondensed',
-                        fontSize: 184,
-                        color: P5
-                    ),)
-                  ],
-                ),
-              ],
-            ),),
-            Expanded(child: Column(
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        'HB',
+                        style: TextStyle(
+                            fontFamily: 'GaleanaCondensed',
+                            fontSize: 184,
+                            color: P5),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+                child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(

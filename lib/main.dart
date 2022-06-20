@@ -8,7 +8,7 @@ import 'package:hornblastersadmin/UI/signin/signin.dart';
 
 import 'UI/splashscreen/splashscreen.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await GetStorage.init();
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       title: 'HornBlasters',
-      home:  SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }

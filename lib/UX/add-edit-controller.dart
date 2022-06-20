@@ -10,26 +10,27 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 DashboardController controller = Get.put(DashboardController());
 
-class AddEditController extends GetxController{
+class AddEditController extends GetxController {
+  var pagetype = ''.obs;
 
+  var type = ''.obs;
 
-  var pagetype = ''.obs ;
-  var type = ''.obs ;
-  int id = 0  ;
-  var title = ''.obs ;
-  var url = ''.obs ;
-  var uri = ''.obs ;
-  var iname = ''.obs ;
+  int id = 0;
+
+  var title = ''.obs;
+
+  var url = ''.obs;
+
+  var uri = ''.obs;
+
+  var iname = ''.obs;
+
   final ImagePicker picker = ImagePicker();
-  File? file ;
-  var selected ;
-  List types = ['image' , 'video'];
+  File? file;
 
+  var selected;
 
-
-
-
-
+  List types = ['image', 'video'];
 
   void uploadingimage() {
     Get.defaultDialog(
@@ -56,10 +57,6 @@ class AddEditController extends GetxController{
     );
   }
 
-
-
-
-
   pickImage() async {
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
@@ -72,12 +69,14 @@ class AddEditController extends GetxController{
       await refstor.putFile(file!);
       var geturl = await refstor.getDownloadURL();
       uri.value = await geturl;
-      iname.value = getnameimage ;
+      iname.value = getnameimage;
       Get.back();
-      Get.snackbar('file uploaded', '',colorText:P5,snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
+      Get.snackbar('file uploaded', '',
+          colorText: P5,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green);
     }
   }
-
 
   pickVideo() async {
     final XFile? image = await picker.pickVideo(source: ImageSource.gallery);
@@ -91,82 +90,79 @@ class AddEditController extends GetxController{
       await refstor.putFile(file!);
       var geturl = await refstor.getDownloadURL();
       uri.value = await geturl;
-      iname.value = getnameimage ;
+      iname.value = getnameimage;
       Get.back();
-      Get.snackbar('file uploaded', '',colorText:P5,snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
+      Get.snackbar('file uploaded', '',
+          colorText: P5,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green);
     }
   }
 
-
-  void save() async{
-    if(pagetype.value == 'add'){
+  void save() async {
+    if (pagetype.value == 'add') {
       var data = FirebaseFirestore.instance.collection('Pic_Vid');
-      await data.get().then((value){
-
-          CollectionReference wregidt =
-          FirebaseFirestore.instance.collection('Pic_Vid');
-          wregidt.doc('${int.parse(value.docs.last.id) +1}').set({
-
-            'id' : int.parse(value.docs.last.id) +1,
-            'title' : title.value,
-            'url' : url.value,
-            'uri' : uri.value,
-            'type' : type.value,
-            'iname' : iname.value,
-
-          });
-
-
-
-      }).catchError((e){
+      await data.get().then((value) {
         CollectionReference wregidt =
-        FirebaseFirestore.instance.collection('Pic_Vid');
+            FirebaseFirestore.instance.collection('Pic_Vid');
+        wregidt.doc('${int.parse(value.docs.last.id) + 1}').set({
+          'id': int.parse(value.docs.last.id) + 1,
+          'title': title.value,
+          'url': url.value,
+          'uri': uri.value,
+          'type': type.value,
+          'iname': iname.value,
+        });
+      }).catchError((e) {
+        CollectionReference wregidt =
+            FirebaseFirestore.instance.collection('Pic_Vid');
         wregidt.doc('0').set({
-
-          'id' : 0,
-          'title' : title.value,
-          'url' : url.value,
-          'uri' : uri.value,
-          'type' : type.value,
-          'iname' : iname.value,
-
+          'id': 0,
+          'title': title.value,
+          'url': url.value,
+          'uri': uri.value,
+          'type': type.value,
+          'iname': iname.value,
         });
       });
-      Get.snackbar('file added', '',colorText:P5,snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
+      Get.snackbar('file added', '',
+          colorText: P5,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green);
       Get.toNamed('/Dashboard');
       controller.data.clear();
       controller.getdata();
-    }else {
+    } else {
       CollectionReference wregidt =
-      FirebaseFirestore.instance.collection('Pic_Vid');
+          FirebaseFirestore.instance.collection('Pic_Vid');
       await wregidt.doc('$id').set({
-
-        'id' : id,
-        'title' : title.value,
-        'url' : url.value,
-        'uri' : uri.value,
-        'type' : type.value,
-        'iname' : iname.value,
-
+        'id': id,
+        'title': title.value,
+        'url': url.value,
+        'uri': uri.value,
+        'type': type.value,
+        'iname': iname.value,
       });
-      Get.snackbar('file updated', '',colorText:P5,snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
+      Get.snackbar('file updated', '',
+          colorText: P5,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green);
       Get.toNamed('/Dashboard');
       controller.data.clear();
       controller.getdata();
     }
   }
 
-  void delete() async{
+  void delete() async {
     CollectionReference wregidt =
-    FirebaseFirestore.instance.collection('Pic_Vid');
+        FirebaseFirestore.instance.collection('Pic_Vid');
     await wregidt.doc('${id}').delete();
-    Get.snackbar('file deleted', '',colorText:P5,snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
+    Get.snackbar('file deleted', '',
+        colorText: P5,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green);
     Get.toNamed('/Dashboard');
     controller.data.clear();
     controller.getdata();
   }
-
-
-
-
 }

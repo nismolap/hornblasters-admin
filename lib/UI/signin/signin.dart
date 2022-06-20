@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hornblastersadmin/UI/constants.dart';
@@ -5,6 +7,7 @@ import 'package:hornblastersadmin/UX/signin-controller.dart';
 
 class SignIn extends StatelessWidget {
   SignInController controller = Get.put(SignInController());
+
   SignIn({Key? key}) : super(key: key);
 
   @override
@@ -31,30 +34,36 @@ class SignIn extends StatelessWidget {
           children: [
             Expanded(
                 child: Column(
-                  children: [
-                    
-                    Expanded(flex:36,child: Container(
+              children: [
+                Expanded(
+                    flex: 36,
+                    child: Container(
                       margin: EdgeInsets.only(left: 20),
                       child: Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text('Hi there,\nWelcome back',textAlign: TextAlign.left,
+                            Text(
+                              'Hi there,\nWelcome back',
+                              textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: P5,
                                 fontSize: 25.0,
-                              ),),
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     )),
-
-                    Expanded(flex:64,child: Container(
+                Expanded(
+                    flex: 64,
+                    child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(25),topLeft: Radius.circular(25)),
-                        color: P5
-                      ),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(25),
+                              topLeft: Radius.circular(25)),
+                          color: P5),
                       child: Row(
                         children: [
                           Expanded(flex: 2, child: Container()),
@@ -62,17 +71,17 @@ class SignIn extends StatelessWidget {
                               flex: 15,
                               child: Column(
                                 children: [
-
                                   Container(
                                     margin: EdgeInsets.symmetric(vertical: 20),
-                                    child: Text('Fill the details to sign',textAlign: TextAlign.left,
+                                    child: Text(
+                                      'Fill the details to sign',
+                                      textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: P2,
                                         fontSize: 18.0,
-                                      ),),
+                                      ),
+                                    ),
                                   ),
-
-
                                   Expanded(
                                     child: SingleChildScrollView(
                                       physics: BouncingScrollPhysics(),
@@ -80,12 +89,11 @@ class SignIn extends StatelessWidget {
                                         key: controller.formstate,
                                         child: Column(
                                           children: [
-
                                             Column(
                                               children: [
-
                                                 Container(
-                                                  margin: EdgeInsets.symmetric(vertical: 10),
+                                                  margin: EdgeInsets.symmetric(
+                                                      vertical: 10),
                                                   child: Row(
                                                     children: [
                                                       Expanded(
@@ -95,34 +103,55 @@ class SignIn extends StatelessWidget {
                                                       Expanded(
                                                         flex: 10,
                                                         child: TextFormField(
-                                                          keyboardType: TextInputType.text,
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .text,
                                                           cursorColor: P2,
                                                           style: TextStyle(
-                                                              fontSize: 18, color: P2),
-                                                          decoration: InputDecoration(
+                                                              fontSize: 18,
+                                                              color: P2),
+                                                          decoration:
+                                                              InputDecoration(
                                                             filled: true,
-                                                            fillColor: Colors.white24,
-                                                            border: OutlineInputBorder(
+                                                            fillColor:
+                                                                Colors.white24,
+                                                            border:
+                                                                OutlineInputBorder(
                                                               borderRadius:
-                                                              BorderRadius.circular(10),
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
                                                             ),
-                                                            contentPadding: EdgeInsets.symmetric(
-                                                                vertical: 25.0, horizontal: 20.0),
-                                                            labelText: 'Username',
-                                                            labelStyle: TextStyle(
-                                                                color: P2,
-                                                                fontSize: 18),
-                                                            hintStyle: TextStyle(
-                                                                color: P2,
-                                                                fontSize: 18),
+                                                            contentPadding:
+                                                                EdgeInsets.symmetric(
+                                                                    vertical:
+                                                                        25.0,
+                                                                    horizontal:
+                                                                        20.0),
+                                                            labelText:
+                                                                'Username',
+                                                            labelStyle:
+                                                                TextStyle(
+                                                                    color: P2,
+                                                                    fontSize:
+                                                                        18),
+                                                            hintStyle:
+                                                                TextStyle(
+                                                                    color: P2,
+                                                                    fontSize:
+                                                                        18),
                                                           ),
                                                           onSaved: (val) {
-                                                            controller.adminusername = val ;
+                                                            controller
+                                                                    .adminusername =
+                                                                val;
                                                           },
                                                           validator: (val) {
-                                                            if (val == null || val.isEmpty) {
+                                                            if (val == null ||
+                                                                val.isEmpty) {
                                                               return 'This field is required';
                                                             }
+                                                            return null;
                                                           },
                                                         ),
                                                       ),
@@ -133,9 +162,9 @@ class SignIn extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
-
                                                 Container(
-                                                  margin: EdgeInsets.symmetric(vertical: 10),
+                                                  margin: EdgeInsets.symmetric(
+                                                      vertical: 10),
                                                   child: Row(
                                                     children: [
                                                       Expanded(
@@ -145,34 +174,55 @@ class SignIn extends StatelessWidget {
                                                       Expanded(
                                                         flex: 10,
                                                         child: TextFormField(
-                                                          keyboardType: TextInputType.visiblePassword,
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .visiblePassword,
                                                           cursorColor: P2,
                                                           style: TextStyle(
-                                                              fontSize: 18, color: P2),
-                                                          decoration: InputDecoration(
+                                                              fontSize: 18,
+                                                              color: P2),
+                                                          decoration:
+                                                              InputDecoration(
                                                             filled: true,
-                                                            fillColor: Colors.white24,
-                                                            border: OutlineInputBorder(
+                                                            fillColor:
+                                                                Colors.white24,
+                                                            border:
+                                                                OutlineInputBorder(
                                                               borderRadius:
-                                                              BorderRadius.circular(10),
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
                                                             ),
-                                                            contentPadding: EdgeInsets.symmetric(
-                                                                vertical: 25.0, horizontal: 20.0),
-                                                            labelText: 'Password',
-                                                            labelStyle: TextStyle(
-                                                                color: P2,
-                                                                fontSize: 18),
-                                                            hintStyle: TextStyle(
-                                                                color: P2,
-                                                                fontSize: 18),
+                                                            contentPadding:
+                                                                EdgeInsets.symmetric(
+                                                                    vertical:
+                                                                        25.0,
+                                                                    horizontal:
+                                                                        20.0),
+                                                            labelText:
+                                                                'Password',
+                                                            labelStyle:
+                                                                TextStyle(
+                                                                    color: P2,
+                                                                    fontSize:
+                                                                        18),
+                                                            hintStyle:
+                                                                TextStyle(
+                                                                    color: P2,
+                                                                    fontSize:
+                                                                        18),
                                                           ),
                                                           onSaved: (val) {
-                                                            controller.adminpass = val ;
+                                                            controller
+                                                                    .adminpass =
+                                                                val;
                                                           },
                                                           validator: (val) {
-                                                            if (val == null || val.isEmpty) {
+                                                            if (val == null ||
+                                                                val.isEmpty) {
                                                               return 'This field is required';
                                                             }
+                                                            return null;
                                                           },
                                                         ),
                                                       ),
@@ -183,15 +233,14 @@ class SignIn extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
-
                                               ],
                                             ),
-
-
                                             Container(
-                                              margin: EdgeInsets.only(bottom: 50, top: 20),
+                                              margin: EdgeInsets.only(
+                                                  bottom: 50, top: 20),
                                               child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   Expanded(
                                                     flex: 1,
@@ -200,9 +249,12 @@ class SignIn extends StatelessWidget {
                                                   Expanded(
                                                     flex: 10,
                                                     child: FlatButton(
-                                                      shape: RoundedRectangleBorder(
-                                                          borderRadius:
-                                                          BorderRadius.circular(10.0)),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0)),
                                                       color: P2,
                                                       height: 70,
                                                       onPressed: () {
@@ -210,12 +262,15 @@ class SignIn extends StatelessWidget {
                                                       },
                                                       child: Column(
                                                         mainAxisAlignment:
-                                                        MainAxisAlignment.center,
+                                                            MainAxisAlignment
+                                                                .center,
                                                         children: [
                                                           Container(
                                                             child: Text(
                                                               'Login',
-                                                              textAlign: TextAlign.center,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
                                                               style: TextStyle(
                                                                 color: P5,
                                                                 fontSize: 18.0,
@@ -233,25 +288,19 @@ class SignIn extends StatelessWidget {
                                                 ],
                                               ),
                                             ),
-
-
                                           ],
                                         ),
                                       ),
                                     ),
                                   ),
-
-
-
                                 ],
                               )),
                           Expanded(flex: 2, child: Container()),
                         ],
                       ),
                     )),
-
-                  ],
-                ))
+              ],
+            ))
           ],
         ),
       ),
