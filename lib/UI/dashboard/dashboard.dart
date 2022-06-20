@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hornblastersadmin/UI/constants.dart';
 import 'package:hornblastersadmin/UI/dashboard/floatingactionbutton.dart';
+import 'package:hornblastersadmin/UX/add-edit-controller.dart';
 import 'package:hornblastersadmin/UX/dashboard-controller.dart';
 
 class Dashboard extends StatelessWidget {
   DashboardController controller = Get.put(DashboardController());
+  AddEditController add = Get.put(AddEditController());
   Dashboard({Key? key}) : super(key: key);
 
   @override
@@ -101,7 +103,14 @@ class Dashboard extends StatelessWidget {
                                             children: [
                                               IconButton(
                                                 onPressed: () async{
-
+                                                  add.pagetype.value = 'edit' ;
+                                                  Get.toNamed('AddEdit');
+                                                  add.title.value = controller.data[i]['title'];
+                                                  add.url.value = controller.data[i]['url'];
+                                                  add.uri.value = controller.data[i]['uri'];
+                                                  add.type.value = controller.data[i]['type'];
+                                                  add.id = controller.data[i]['id'];
+                                                  add.iname.value = controller.data[i]['iname'];
                                                 },
                                                 padding: EdgeInsets.zero,
                                                 icon: Icon(Icons.edit,color: P2,size: 55,),

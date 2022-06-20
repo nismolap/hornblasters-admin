@@ -117,6 +117,7 @@ class SignIn extends StatelessWidget {
                                                                 fontSize: 18),
                                                           ),
                                                           onSaved: (val) {
+                                                            controller.adminusername = val ;
                                                           },
                                                           validator: (val) {
                                                             if (val == null || val.isEmpty) {
@@ -166,6 +167,7 @@ class SignIn extends StatelessWidget {
                                                                 fontSize: 18),
                                                           ),
                                                           onSaved: (val) {
+                                                            controller.adminpass = val ;
                                                           },
                                                           validator: (val) {
                                                             if (val == null || val.isEmpty) {

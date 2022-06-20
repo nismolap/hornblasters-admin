@@ -2,11 +2,16 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:hornblastersadmin/UI/constants.dart';
+import 'package:hornblastersadmin/UX/dashboard-controller.dart';
+import 'package:hornblastersadmin/UX/signin-controller.dart';
+
+SignInController controller = Get.put(SignInController());
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+
+  SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -16,10 +21,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
-    Timer(const Duration(seconds: 3), () async{
-      // Get.offNamed('/HomeScreen');
-    });
+    Timer(
+        Duration(seconds: 2),
+            () => controller.isregistered());
   }
 
   @override

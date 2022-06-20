@@ -43,6 +43,7 @@ class Buttons extends StatelessWidget {
                                   Container(margin: EdgeInsets.symmetric(vertical: 50), child: ElevatedButton(onPressed: (){Get.toNamed('/SignIn');}, child: Text('signin'))),
                                   Container(margin: EdgeInsets.symmetric(vertical: 50), child: ElevatedButton(onPressed: (){Get.toNamed('/Dashboard');controller.data.clear();
                                   controller.getdata();}, child: Text('Dashboard'))),
+                                  Container(margin: EdgeInsets.symmetric(vertical: 50), child: ElevatedButton(onPressed: (){Get.toNamed('/AddEdit');}, child: Text('AddEdit'))),
                                 ],
                               )),
                           Expanded(flex: 2, child: Container()),
