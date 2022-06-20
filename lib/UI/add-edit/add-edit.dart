@@ -154,6 +154,9 @@ class AddEdit extends StatelessWidget {
                                                             onSaved: (val) {
                                                               controller.title.value = val! ;
                                                             },
+                                                            onChanged: (val){
+                                                              controller.title.value = val ;
+                                                            },
                                                             validator: (val) {
                                                               if (val == null || val.isEmpty) {
                                                                 return 'This field is required';
@@ -205,6 +208,9 @@ class AddEdit extends StatelessWidget {
                                                             onSaved: (val) {
                                                               controller.url.value = val! ;
                                                             },
+                                                            onChanged: (val){
+                                                              controller.url.value = val ;
+                                                            },
                                                             validator: (val) {
                                                               if (val == null || val.isEmpty) {
                                                                 return 'This field is required';
@@ -224,38 +230,98 @@ class AddEdit extends StatelessWidget {
                                               ),
 
 
-                                              controller.iname.value == '' ? Container(
-                                                height: 140,
-                                                width: 140,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                    width: 1,
-                                                    color: P2
-                                                  )
-                                                ),
-                                                child: ElevatedButton(
-                                                  onPressed: (){FocusManager.instance.primaryFocus?.unfocus();controller.pickImage();},
-                                                  style: ElevatedButton.styleFrom(
-                                                    elevation: 0.0,
-                                                    primary: Colors.transparent,
-                                                    onPrimary: P2
-                                                    ),
-                                                  child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                                              controller.uri.value == '' ? controller.type.value == '' ? Row(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
                                                     children: [
 
-                                                      Icon(Icons.upload,size: 40,color: P2,),
-
-                                                      Text('Uploud',textAlign: TextAlign.left,
-                                                        style: TextStyle(
-                                                          color: P2,
-                                                          fontSize: 18.0,
-                                                        ),),
+                                                      GetBuilder<AddEditController>(
+                                                        builder: (controller)=> Container(
+                                                          padding: EdgeInsets.all(10),
+                                                          decoration: BoxDecoration(
+                                                            borderRadius: BorderRadius.circular(20),
+                                                            color: Color(0xff42C2FF),
+                                                          ),
+                                                          child: DropdownButton(
+                                                            underline: Container(),
+                                                            icon: Icon(Icons.arrow_drop_down_outlined , color: Color(0xffEFFFFD),size: 40,),
+                                                            dropdownColor: Color(0xff42C2FF),
+                                                            hint: Container(
+                                                              width: 120,
+                                                              alignment: Alignment.centerRight,
+                                                              child: Text('Choose Type',textAlign: TextAlign.end,style: TextStyle(
+                                                                  fontSize: 20,
+                                                                  color: Color(0xffEFFFFD)
+                                                              ),),
+                                                            ),
+                                                            items: controller.types.map((e) => DropdownMenuItem(
+                                                              child: Container(
+                                                                width: 120,
+                                                                alignment: Alignment.centerRight,
+                                                                child: Text('$e',textAlign: TextAlign.end,style: TextStyle(
+                                                                    fontSize: 20,
+                                                                    color: Color(0xffEFFFFD)
+                                                                ),),
+                                                              ),
+                                                              value: e,
+                                                            )).toList(),
+                                                            onChanged: (val){
+                                                              controller.selected = val ;
+                                                              controller.type.value = controller.selected ;
+                                                              controller.update();
+                                                            },
+                                                            value: controller.selected,
+                                                          ),
+                                                        ),
+                                                      ),
 
                                                     ],
-                                                  ),
-                                                ),
-                                              ) : Container(
+                                                  )
+
+
+                                                      : Container(
+                                                    height: 140,
+                                                    width: 140,
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            width: 1,
+                                                            color: P2
+                                                        )
+                                                    ),
+                                                    child: ElevatedButton(
+                                                      onPressed: (){FocusManager.instance.primaryFocus?.unfocus();
+                                                      if(controller.type.value == 'image'){
+                                                        controller.pickImage();
+                                                      } else {
+                                                        controller.pickVideo();
+                                                      }
+
+                                                      },
+                                                      style: ElevatedButton.styleFrom(
+                                                          elevation: 0.0,
+                                                          primary: Colors.transparent,
+                                                          onPrimary: P2
+                                                      ),
+                                                      child: Column(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                        children: [
+
+                                                          Icon(Icons.upload,size: 40,color: P2,),
+
+                                                          Text('Uploud',textAlign: TextAlign.left,
+                                                            style: TextStyle(
+                                                              color: P2,
+                                                              fontSize: 18.0,
+                                                            ),),
+
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  )
+
+
+
+                                                  : Container(
                                                 padding: EdgeInsets.all(20),
                                                 decoration: BoxDecoration(
                                                     border: Border.all(
@@ -269,6 +335,120 @@ class AddEdit extends StatelessWidget {
                                                     fontSize: 18.0,
                                                   ),),
                                               ),
+
+
+
+                                              // controller.iname.value == '' ?
+                                              //
+                                              //
+                                              //     controller.type.value == '' ?
+                                              // Row(
+                                              //   mainAxisAlignment: MainAxisAlignment.center,
+                                              //   children: [
+                                              //
+                                              //     GetBuilder<AddEditController>(
+                                              //       builder: (controller)=> Container(
+                                              //         padding: EdgeInsets.all(10),
+                                              //         decoration: BoxDecoration(
+                                              //           borderRadius: BorderRadius.circular(20),
+                                              //           color: Color(0xff42C2FF),
+                                              //         ),
+                                              //         child: DropdownButton(
+                                              //           underline: Container(),
+                                              //           icon: Icon(Icons.arrow_drop_down_outlined , color: Color(0xffEFFFFD),size: 40,),
+                                              //           dropdownColor: Color(0xff42C2FF),
+                                              //           hint: Container(
+                                              //             width: 120,
+                                              //             alignment: Alignment.centerRight,
+                                              //             child: Text('Choose Type',textAlign: TextAlign.end,style: TextStyle(
+                                              //                 fontSize: 20,
+                                              //                 color: Color(0xffEFFFFD)
+                                              //             ),),
+                                              //           ),
+                                              //           items: controller.types.map((e) => DropdownMenuItem(
+                                              //             child: Container(
+                                              //               width: 120,
+                                              //               alignment: Alignment.centerRight,
+                                              //               child: Text('$e',textAlign: TextAlign.end,style: TextStyle(
+                                              //                   fontSize: 20,
+                                              //                   color: Color(0xffEFFFFD)
+                                              //               ),),
+                                              //             ),
+                                              //             value: e,
+                                              //           )).toList(),
+                                              //           onChanged: (val){
+                                              //             controller.selected = val ;
+                                              //             controller.type.value = controller.selected ;
+                                              //             controller.update();
+                                              //           },
+                                              //           value: controller.selected,
+                                              //         ),
+                                              //       ),
+                                              //     ),
+                                              //
+                                              //   ],
+                                              // )
+                                              //
+                                              // :
+                                              //
+                                              //
+                                              //
+                                              // Container(
+                                              //   height: 140,
+                                              //   width: 140,
+                                              //   decoration: BoxDecoration(
+                                              //     border: Border.all(
+                                              //       width: 1,
+                                              //       color: P2
+                                              //     )
+                                              //   ),
+                                              //   child: ElevatedButton(
+                                              //     onPressed: (){FocusManager.instance.primaryFocus?.unfocus();
+                                              //       if(controller.type.value == 'image'){
+                                              //         controller.pickImage();
+                                              //       } else {
+                                              //         controller.pickVideo();
+                                              //       }
+                                              //
+                                              //       },
+                                              //     style: ElevatedButton.styleFrom(
+                                              //       elevation: 0.0,
+                                              //       primary: Colors.transparent,
+                                              //       onPrimary: P2
+                                              //       ),
+                                              //     child: Column(
+                                              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              //       children: [
+                                              //
+                                              //         Icon(Icons.upload,size: 40,color: P2,),
+                                              //
+                                              //         Text('Uploud',textAlign: TextAlign.left,
+                                              //           style: TextStyle(
+                                              //             color: P2,
+                                              //             fontSize: 18.0,
+                                              //           ),),
+                                              //
+                                              //       ],
+                                              //     ),
+                                              //   ),
+                                              // )
+                                              //
+                                              //     :
+                                              //
+                                              // Container(
+                                              //   padding: EdgeInsets.all(20),
+                                              //   decoration: BoxDecoration(
+                                              //       border: Border.all(
+                                              //           width: 1,
+                                              //           color: P2
+                                              //       )
+                                              //   ),
+                                              //   child: Text(controller.iname.value,textAlign: TextAlign.left,
+                                              //     style: TextStyle(
+                                              //       color: P2,
+                                              //       fontSize: 18.0,
+                                              //     ),),
+                                              // ),
 
 
                                               Container(
@@ -289,6 +469,11 @@ class AddEdit extends StatelessWidget {
                                                         color: P2,
                                                         height: 70,
                                                         onPressed: () {
+                                                          print('======${controller.iname.value}');
+                                                          print('======${controller.type.value}');
+                                                          print('======${controller.url.value}');
+                                                          print('======${controller.uri.value}');
+                                                          print('======${controller.title.value}');
                                                           FocusManager.instance.primaryFocus?.unfocus();
                                                           addeditcheck();
                                                         },

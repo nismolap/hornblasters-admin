@@ -21,7 +21,7 @@ class FloatingActionButtonD extends StatelessWidget {
           add.uri.value = '';
           add.type.value = '';
           add.iname.value = '';
-          // add.getlastdoc();
+          add.selected = null;
 
 
 

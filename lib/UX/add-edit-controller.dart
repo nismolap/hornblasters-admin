@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:hornblastersadmin/UI/constants.dart';
 import 'package:hornblastersadmin/UX/dashboard-controller.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mime/mime.dart';
 import 'package:path/path.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -23,6 +22,8 @@ class AddEditController extends GetxController{
   var iname = ''.obs ;
   final ImagePicker picker = ImagePicker();
   File? file ;
+  var selected ;
+  List types = ['image' , 'video'];
 
 
 
@@ -72,33 +73,64 @@ class AddEditController extends GetxController{
       var geturl = await refstor.getDownloadURL();
       uri.value = await geturl;
       iname.value = getnameimage ;
-      print(lookupMimeType(getnameimage, headerBytes: [0xFF, 0xD8]));
       Get.back();
       Get.snackbar('file uploaded', '',colorText:P5,snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
-      if(lookupMimeType(getnameimage, headerBytes: [0xFF, 0xD8]) == 'image/jpeg'){
-        type.value = 'image';
-      }else{
-        type.value = 'video';
-      }
     }
   }
+
+
+  pickVideo() async {
+    final XFile? image = await picker.pickVideo(source: ImageSource.gallery);
+
+    if (image!.path.isNotEmpty) {
+      file = File(image.path);
+
+      uploadingimage();
+      var getnameimage = basename(image.path);
+      var refstor = FirebaseStorage.instance.ref('videos/$getnameimage');
+      await refstor.putFile(file!);
+      var geturl = await refstor.getDownloadURL();
+      uri.value = await geturl;
+      iname.value = getnameimage ;
+      Get.back();
+      Get.snackbar('file uploaded', '',colorText:P5,snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
+    }
+  }
+
 
   void save() async{
     if(pagetype.value == 'add'){
       var data = FirebaseFirestore.instance.collection('Pic_Vid');
       await data.get().then((value){
-      CollectionReference wregidt =
-      FirebaseFirestore.instance.collection('Pic_Vid');
-      wregidt.doc('${int.parse(value.docs.last.id) +1}').set({
 
-        'id' : int.parse(value.docs.last.id) +1,
-        'title' : title.value,
-        'url' : url.value,
-        'uri' : uri.value,
-        'type' : type.value,
-        'iname' : iname.value,
+          CollectionReference wregidt =
+          FirebaseFirestore.instance.collection('Pic_Vid');
+          wregidt.doc('${int.parse(value.docs.last.id) +1}').set({
 
-      });
+            'id' : int.parse(value.docs.last.id) +1,
+            'title' : title.value,
+            'url' : url.value,
+            'uri' : uri.value,
+            'type' : type.value,
+            'iname' : iname.value,
+
+          });
+
+
+
+      }).catchError((e){
+        CollectionReference wregidt =
+        FirebaseFirestore.instance.collection('Pic_Vid');
+        wregidt.doc('0').set({
+
+          'id' : 0,
+          'title' : title.value,
+          'url' : url.value,
+          'uri' : uri.value,
+          'type' : type.value,
+          'iname' : iname.value,
+
+        });
       });
       Get.snackbar('file added', '',colorText:P5,snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
       Get.toNamed('/Dashboard');
@@ -133,6 +165,8 @@ class AddEditController extends GetxController{
     controller.data.clear();
     controller.getdata();
   }
+
+
 
 
 }
