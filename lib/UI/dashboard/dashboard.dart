@@ -107,14 +107,14 @@ class Dashboard extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                                 image: DecorationImage(
-                                                  image: NetworkImage(controller
-                                                                  .data[i]
-                                                              ['type'] ==
-                                                          'image'
-                                                      ? controller.data[i]
-                                                          ['uri']
-                                                      : controller.data[i]
-                                                  ['thm']),
+                                                  image: NetworkImage(
+                                                      controller.data[i]
+                                                                  ['type'] ==
+                                                              'image'
+                                                          ? controller.data[i]
+                                                              ['uri']
+                                                          : controller.data[i]
+                                                              ['thm']),
                                                   fit: BoxFit.cover,
                                                 ),
                                                 color: P5),
@@ -138,11 +138,11 @@ class Dashboard extends StatelessWidget {
                                                         ['id'];
                                                     add.iname.value = controller
                                                         .data[i]['iname'];
-                                                    add.iname2.value = controller
-                                                        .data[i]['tname'];
+                                                    add.iname2.value =
+                                                        controller.data[i]
+                                                            ['tname'];
                                                     add.uri2.value = controller
                                                         .data[i]['thm'];
-
                                                   },
                                                   padding: EdgeInsets.zero,
                                                   icon: Icon(

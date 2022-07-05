@@ -137,7 +137,7 @@ class AddEditController extends GetxController {
           'uri': uri.value,
           'type': type.value,
           'iname': iname.value,
-          'thm' : uri2.value,
+          'thm': uri2.value,
           'tname': iname2.value,
         });
       }).catchError((e) {
@@ -150,7 +150,7 @@ class AddEditController extends GetxController {
           'uri': uri.value,
           'type': type.value,
           'iname': iname.value,
-          'thm' : uri2.value,
+          'thm': uri2.value,
           'tname': iname2.value,
         });
       });
@@ -171,7 +171,7 @@ class AddEditController extends GetxController {
         'uri': uri.value,
         'type': type.value,
         'iname': iname.value,
-        'thm' : uri2.value,
+        'thm': uri2.value,
         'tname': iname2.value,
       });
       Get.snackbar('file updated', '',
