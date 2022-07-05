@@ -113,7 +113,8 @@ class Dashboard extends StatelessWidget {
                                                           'image'
                                                       ? controller.data[i]
                                                           ['uri']
-                                                      : 'http://www.milhouses.com.eg/dar/imgs/video.jpg'),
+                                                      : controller.data[i]
+                                                  ['thm']),
                                                   fit: BoxFit.cover,
                                                 ),
                                                 color: P5),
@@ -137,6 +138,11 @@ class Dashboard extends StatelessWidget {
                                                         ['id'];
                                                     add.iname.value = controller
                                                         .data[i]['iname'];
+                                                    add.iname2.value = controller
+                                                        .data[i]['tname'];
+                                                    add.uri2.value = controller
+                                                        .data[i]['thm'];
+
                                                   },
                                                   padding: EdgeInsets.zero,
                                                   icon: Icon(

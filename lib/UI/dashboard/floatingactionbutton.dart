@@ -20,8 +20,10 @@ class FloatingActionButtonD extends StatelessWidget {
           add.title.value = '';
           add.url.value = '';
           add.uri.value = '';
+          add.uri2.value = '';
           add.type.value = '';
           add.iname.value = '';
+          add.iname2.value = '';
           add.selected = null;
         },
         backgroundColor: P5,

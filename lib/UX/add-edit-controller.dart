@@ -22,11 +22,15 @@ class AddEditController extends GetxController {
   var url = ''.obs;
 
   var uri = ''.obs;
+  var uri2 = ''.obs;
 
   var iname = ''.obs;
+  var iname2 = ''.obs;
 
   final ImagePicker picker = ImagePicker();
+  final ImagePicker picker2 = ImagePicker();
   File? file;
+  File? file2;
 
   var selected;
 
@@ -99,6 +103,27 @@ class AddEditController extends GetxController {
     }
   }
 
+  pickThm() async {
+    final XFile? image = await picker2.pickImage(source: ImageSource.gallery);
+
+    if (image!.path.isNotEmpty) {
+      file2 = File(image.path);
+
+      uploadingimage();
+      var getnameimage = basename(image.path);
+      var refstor = FirebaseStorage.instance.ref('videos/$getnameimage');
+      await refstor.putFile(file2!);
+      var geturl = await refstor.getDownloadURL();
+      uri2.value = await geturl;
+      iname2.value = getnameimage;
+      Get.back();
+      Get.snackbar('file uploaded', '',
+          colorText: P5,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green);
+    }
+  }
+
   void save() async {
     if (pagetype.value == 'add') {
       var data = FirebaseFirestore.instance.collection('Pic_Vid');
@@ -112,6 +137,8 @@ class AddEditController extends GetxController {
           'uri': uri.value,
           'type': type.value,
           'iname': iname.value,
+          'thm' : uri2.value,
+          'tname': iname2.value,
         });
       }).catchError((e) {
         CollectionReference wregidt =
@@ -123,6 +150,8 @@ class AddEditController extends GetxController {
           'uri': uri.value,
           'type': type.value,
           'iname': iname.value,
+          'thm' : uri2.value,
+          'tname': iname2.value,
         });
       });
       Get.snackbar('file added', '',
@@ -142,6 +171,8 @@ class AddEditController extends GetxController {
         'uri': uri.value,
         'type': type.value,
         'iname': iname.value,
+        'thm' : uri2.value,
+        'tname': iname2.value,
       });
       Get.snackbar('file updated', '',
           colorText: P5,
